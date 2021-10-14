@@ -1,5 +1,6 @@
 package br.com.letscode.quiz
 
+
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
