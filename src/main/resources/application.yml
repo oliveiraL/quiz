@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: 'localhost:5432'
+    hikari:
+      username: 'compose-postgres'
+      password: 'compose-postgres'
