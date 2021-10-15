@@ -8,5 +8,5 @@ data class UsuarioDTO(
 data class UsuarioCreateDTO(
     val nome: String,
     val senha: String,
-    var login: String = ""
+    val login: String = ""
 )
