@@ -1,6 +1,9 @@
 spring:
   datasource:
-    url: 'localhost:5432'
+    url: 'jdbc:postgresql://localhost:5432/filmes'
     hikari:
       username: 'compose-postgres'
       password: 'compose-postgres'
+  jpa:
+    hibernate:
+      ddl-auto: update
