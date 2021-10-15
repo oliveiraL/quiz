@@ -9,3 +9,5 @@ services:
       - POSTGRES_PASSWORD=compose-postgres
     ports:
       - "5432:5432"
+    volumes:
+      - /home/luciosoaresdeoliveira/workspace/letscode/turma_770/quiz
