@@ -10,4 +10,4 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /home/luciosoaresdeoliveira/workspace/letscode/turma_770/quiz
+      - ./postgres-data:/var/lib/postgresql/data
