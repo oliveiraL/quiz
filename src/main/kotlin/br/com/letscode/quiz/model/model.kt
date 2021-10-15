@@ -1,9 +1,6 @@
 package br.com.letscode.quiz.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table
@@ -17,11 +14,11 @@ data class Filme(
 @Entity
 @Table
 data class Usuario(
-    @Id @GeneratedValue val id: Int,
+    @Id @GeneratedValue val id: Int = 0,
     val nome: String,
     val senha: String,
     val login: String,
-    val qntVida: Int,
-    val pontos: Int
+    val qntVida: Int = 0,
+    val pontos: Int = 0
 )
 
