@@ -22,6 +22,8 @@ class UsuarioService(
         }
     }
 
+    fun getUsuarioByLogin(login: String): Usuario? = repository.findByLogin(login)
+
     fun getAll(): List<Usuario> = repository.findAll()
 
 
