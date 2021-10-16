@@ -22,5 +22,7 @@ class UsuarioService(
         }
     }
 
+    fun getAll(): List<Usuario> = repository.findAll()
+
 
 }

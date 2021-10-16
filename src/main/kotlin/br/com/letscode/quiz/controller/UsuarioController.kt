@@ -4,11 +4,9 @@ import br.com.letscode.quiz.dto.UsuarioCreateDTO
 import br.com.letscode.quiz.dto.UsuarioDTO
 import br.com.letscode.quiz.model.Usuario
 import br.com.letscode.quiz.service.UsuarioService
+import br.com.letscode.quiz.utils.convertToDTO
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("usuario")
@@ -21,14 +19,12 @@ class UsuarioController(val service: UsuarioService){
             login = usuarioCreateDTO.login,
             senha = usuarioCreateDTO.senha
         )
-        val usuarioDTO = service.create(usuario).let {
-            UsuarioDTO(
-                nome = it.nome,
-                login = it.login
-            )
-        }
+        val usuarioDTO = service.create(usuario).convertToDTO()
         ResponseEntity.ok(usuarioDTO)
     }
+
+    @GetMapping
+    fun getAll(): List<UsuarioDTO> = service.getAll().map(Usuario::convertToDTO)
 }
 
 
