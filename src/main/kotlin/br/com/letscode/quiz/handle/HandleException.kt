@@ -1,5 +1,6 @@
 package br.com.letscode.quiz.handle
 
+import br.com.letscode.quiz.exception.AuthenticationException
 import br.com.letscode.quiz.exception.LoginException
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -23,5 +24,15 @@ class HandleException : ResponseEntityExceptionHandler() {
             ex.message,
             422
         )
+    )
+
+    @ExceptionHandler(value = [AuthenticationException::class])
+    protected fun handleAuthentication(
+            ex: RuntimeException, request: WebRequest
+    ): ResponseEntity<Error> = ResponseEntity.status(401).body(
+            Error(
+                    ex.message,
+                    401
+            )
     )
 }

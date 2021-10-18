@@ -19,6 +19,9 @@ class AuthorizartionFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) = run {
+
+        if(request.requestURI == "/authentication") filterChain.doFilter(request, response)
+
         val requestTokenHeader: String? = request.getHeader("Authorization");
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             val jwtToken = requestTokenHeader.substring(7)

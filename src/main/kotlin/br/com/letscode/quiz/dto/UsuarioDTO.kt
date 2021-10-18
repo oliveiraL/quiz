@@ -10,3 +10,8 @@ data class UsuarioCreateDTO(
     val senha: String,
     val login: String = ""
 )
+
+data class UsuarioAutenticacaoDTO(
+        val login: String,
+        val senha: String
+)
