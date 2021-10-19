@@ -27,10 +27,11 @@ class UsuarioService(
 
     fun getAll(): List<Usuario> = repository.findAll()
 
-    fun validarLogin(usuario: Usuario) {
+    fun validarLogin(usuario: Usuario): Usuario = run {
         val usuarioBanco = repository.findByLogin(usuario.login)
         if (usuarioBanco === null || usuarioBanco.senha != usuario.senha)
             throw AuthenticationException("Login e/ou senha invalidos")
+        usuarioBanco
     }
 
 

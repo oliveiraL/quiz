@@ -23,7 +23,7 @@ fun Usuario.convertToDTO(): UsuarioDTO = UsuarioDTO(
 
 object JwtTokenUtil {
 
-    private const val JWT_TOKEN_VALIDITY = 60L
+    private const val JWT_TOKEN_VALIDITY = 600L
 
     private val secret: String = "letscode"
 
@@ -53,7 +53,7 @@ object JwtTokenUtil {
     //gera token para user
     fun generateToken(usuario: Usuario): String = doGenerateToken(usuario.login)
 
-    private fun doGenerateToken(subject: String, claims: Map<String, Any> = mapOf()): String =
+    private fun doGenerateToken(subject: String, claims: MutableMap<String, Any> = mapOf<String, Any>().toMutableMap()): String =
         Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(Date(System.currentTimeMillis()))
             .setExpiration(Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
             .signWith(SignatureAlgorithm.HS256, secret).compact()
@@ -61,7 +61,7 @@ object JwtTokenUtil {
     //valida o token
     fun validateToken(token: String, usuario: Usuario?) =
         getUserLoginFromToken(token).let { name ->
-            if(usuario?.login !== name || isTokenExpired(token))
+            if(usuario?.login != name || isTokenExpired(token))
                 throw AuthorizarionException("Token invalido")
         }
 }
